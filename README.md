@@ -2,7 +2,7 @@
 
 **From intent to a verified system.**
 
-AXIOPRA is an open operating system for engineering thought: a human- and machine-readable framework that helps people and AI agents transform vague ideas into traceable, verifiable, and evolvable engineering systems.
+AXIOPRA is a vendor-neutral operating system for engineering thought: a human- and machine-readable framework that helps people and AI agents transform vague ideas into traceable, verifiable, and evolvable engineering systems.
 
 > Complex systems should begin with understanding, not code.
 

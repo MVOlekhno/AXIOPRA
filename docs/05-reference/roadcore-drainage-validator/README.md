@@ -12,7 +12,7 @@ axiopra:
   relations:
     depends_on: [AXP-MTH-STAGES, AXP-VER-MODEL]
     verifies: [AXP-MTH-STAGES]
-    produces: [RCD-INTENT-001]
+    produces: [RCD-INTENT-001, RCD-FAQ-001]
   verification:
     structural: [AXP-RULE-001, AXP-RULE-002, AXP-RULE-003]
     semantic: [AXP-SEM-001, AXP-SEM-006, AXP-SEM-008]
@@ -66,6 +66,9 @@ This proposition is only a candidate. It must be refined into a domain contract,
 - Lean for one narrowly defined graph or grade property;
 - LLM audit for cross-document coherence, never as the only verifier.
 
-## Next artifact
+## Current Working Backwards artifacts
 
-The next file will be the Working Backwards press release and FAQ, identified as `RCD-INTENT-001`. No implementation should begin before its first quality gate passes.
+- [`01-working-backwards/press-release.md`](01-working-backwards/press-release.md)
+- [`01-working-backwards/faq.md`](01-working-backwards/faq.md)
+
+No implementation should begin before the Working Backwards gate passes.

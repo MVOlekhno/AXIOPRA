@@ -39,6 +39,19 @@ artifact_model:
     - build/knowledge-graph.mmd
     - build/traceability-report.json
 
+artifact_discovery:
+  include:
+    - docs/**/*.md
+    - rfcs/**/*.md
+  exclude:
+    - templates/**
+    - build/**
+  root_documents_are_guidance_not_artifacts:
+    - README.md
+    - README.ru.md
+    - AGENTS.md
+    - LLM_GUIDE.md
+
 artifact_roots:
   - docs
   - rfcs
