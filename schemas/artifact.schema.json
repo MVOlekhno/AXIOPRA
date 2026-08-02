@@ -1,0 +1,406 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiopra.org/schemas/artifact/0.1.0",
+  "title": "AXIOPRA Artifact Metadata",
+  "description": "Schema for the object stored under the axiopra key in Markdown YAML frontmatter or an equivalent sidecar representation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "kind",
+    "title",
+    "version",
+    "status",
+    "maturity",
+    "canonical",
+    "depends_on",
+    "relations",
+    "human_outcome",
+    "machine_outcome",
+    "verification"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "id": {
+      "$ref": "#/$defs/artifactId"
+    },
+    "kind": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "version": {
+      "$ref": "#/$defs/semver"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "proposed",
+        "accepted",
+        "rejected",
+        "deprecated",
+        "superseded",
+        "archived"
+      ]
+    },
+    "maturity": {
+      "enum": [
+        "hypothesis",
+        "exploratory",
+        "validated",
+        "canonical"
+      ]
+    },
+    "canonical": {
+      "type": "boolean"
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(?:-[A-Z]{2})?$"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9-]*$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifactId"
+      },
+      "uniqueItems": true
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      },
+      "default": []
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/statement"
+      },
+      "default": []
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/statement"
+      },
+      "default": []
+    },
+    "human_outcome": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "machine_outcome": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "verification": {
+      "$ref": "#/$defs/verificationPlan"
+    },
+    "review": {
+      "$ref": "#/$defs/reviewPolicy"
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifactId"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "external_references": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/externalReference"
+      },
+      "default": []
+    }
+  },
+  "$defs": {
+    "artifactId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*(?:\\.[a-z0-9][a-z0-9_-]*)+$",
+      "minLength": 3,
+      "maxLength": 200
+    },
+    "localId": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
+    },
+    "statement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "statement"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/localId"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "scope": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "status": {
+          "enum": [
+            "active",
+            "challenged",
+            "resolved",
+            "withdrawn"
+          ],
+          "default": "active"
+        }
+      }
+    },
+    "claim": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/statement"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "evidence_class": {
+              "enum": [
+                "none",
+                "hypothesis",
+                "expert-judgment",
+                "source",
+                "observation",
+                "structural-rule",
+                "semantic-review",
+                "domain-review",
+                "test",
+                "measurement",
+                "formal-proof"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "unknown",
+                "low",
+                "medium",
+                "high",
+                "specified",
+                "proved-within-model"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "default": []
+            }
+          }
+        }
+      ]
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "target"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "minLength": 2,
+          "maxLength": 64
+        },
+        "target": {
+          "$ref": "#/$defs/artifactId"
+        },
+        "statement": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "status": {
+          "enum": [
+            "active",
+            "proposed",
+            "rejected",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "default": []
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "boolean",
+              "null"
+            ]
+          },
+          "default": {}
+        }
+      }
+    },
+    "verificationRequirement": {
+      "enum": [
+        "required",
+        "recommended",
+        "optional",
+        "not-required"
+      ]
+    },
+    "verificationPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "structural",
+        "semantic",
+        "human_review"
+      ],
+      "properties": {
+        "structural": {
+          "$ref": "#/$defs/verificationRequirement"
+        },
+        "semantic": {
+          "$ref": "#/$defs/verificationRequirement"
+        },
+        "human_review": {
+          "$ref": "#/$defs/verificationRequirement"
+        },
+        "domain_review": {
+          "$ref": "#/$defs/verificationRequirement"
+        },
+        "empirical": {
+          "$ref": "#/$defs/verificationRequirement"
+        },
+        "formal": {
+          "$ref": "#/$defs/verificationRequirement"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      }
+    },
+    "reviewPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cadence_days": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "next_review": {
+          "type": "string",
+          "format": "date"
+        },
+        "required_roles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "uniqueItems": true
+        },
+        "expiry_behavior": {
+          "enum": [
+            "warn",
+            "stale",
+            "block-acceptance"
+          ]
+        }
+      }
+    },
+    "externalReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "uri"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/localId"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "uri": {
+          "type": "string",
+          "format": "uri"
+        },
+        "accessed": {
+          "type": "string",
+          "format": "date"
+        },
+        "evidence_role": {
+          "type": "string",
+          "maxLength": 500
+        }
+      }
+    }
+  }
+}
