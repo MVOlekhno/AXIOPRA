@@ -12,6 +12,7 @@ axiopra:
   relations:
     depends_on: [AXP-FND-CONSTITUTION, AXP-MTH-STAGES]
     informs: [AXP-FND-MANIFESTO]
+    produces: [AXP-RSH-EVIDENCE]
   verification:
     structural: [AXP-RULE-001, AXP-RULE-002]
     semantic: [AXP-SEM-003, AXP-SEM-005]
@@ -23,6 +24,8 @@ axiopra:
 # Research and Evidence Layer
 
 Every methodology stage must eventually have an evidence dossier. AXIOPRA will not copy industry practices merely because they are famous.
+
+The detailed source registry, case-study questions, negative-evidence rules, and adoption states are defined in [`evidence-policy.md`](evidence-policy.md).
 
 Each dossier must cover:
 
