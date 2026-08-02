@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:axiopra:schema:artifact:0.1.0",
+  "title": "AXIOPRA Markdown Artifact Front Matter",
+  "description": "Schema for the YAML front matter extracted from one canonical AXIOPRA Markdown artifact.",
+  "type": "object",
+  "required": ["axiopra"],
+  "additionalProperties": false,
+  "properties": {
+    "axiopra": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "version",
+        "status",
+        "stage",
+        "language",
+        "confidence",
+        "owners",
+        "summary",
+        "relations",
+        "verification",
+        "learning"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9]{1,15}(?:-[A-Z0-9]+)+$"
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?$"
+        },
+        "status": {
+          "enum": ["hypothesis", "draft", "review", "active", "deprecated", "retired"]
+        },
+        "stage": {
+          "type": "string",
+          "pattern": "^AXP-STAGE-[0-9]{2}$"
+        },
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$"
+        },
+        "confidence": {
+          "enum": ["unverified", "provisional", "validated", "canonical"]
+        },
+        "owners": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 500
+        },
+        "relations": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "depends_on": {"$ref": "#/$defs/idArray"},
+            "derives_from": {"$ref": "#/$defs/idArray"},
+            "refines": {"$ref": "#/$defs/idArray"},
+            "constrains": {"$ref": "#/$defs/idArray"},
+            "realizes": {"$ref": "#/$defs/idArray"},
+            "verifies": {"$ref": "#/$defs/idArray"},
+            "tests": {"$ref": "#/$defs/idArray"},
+            "proves": {"$ref": "#/$defs/idArray"},
+            "informs": {"$ref": "#/$defs/idArray"},
+            "produces": {"$ref": "#/$defs/idArray"},
+            "supersedes": {"$ref": "#/$defs/idArray"},
+            "conflicts_with": {"$ref": "#/$defs/idArray"}
+          }
+        },
+        "verification": {
+          "type": "object",
+          "required": ["structural", "semantic"],
+          "additionalProperties": false,
+          "properties": {
+            "structural": {"$ref": "#/$defs/checkArray"},
+            "semantic": {"$ref": "#/$defs/checkArray"},
+            "formal": {"$ref": "#/$defs/checkArray"},
+            "human": {"$ref": "#/$defs/checkArray"}
+          }
+        },
+        "learning": {
+          "type": "object",
+          "required": ["external", "internal"],
+          "additionalProperties": false,
+          "properties": {
+            "external": {"type": "string", "minLength": 10},
+            "internal": {"type": "string", "minLength": 10}
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "idArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9]{1,15}(?:-[A-Z0-9]+)+$"
+      }
+    },
+    "checkArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^AXP-(?:RULE|SEM)-[0-9]{3}$"
+      }
+    }
+  }
+}
