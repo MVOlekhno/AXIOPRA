@@ -1,0 +1,113 @@
+schema_version: "0.1.0"
+
+project:
+  id: axp.platform
+  name: AXIOPRA
+  title: Engineering Thought Operating System
+  tagline: From intent to a verified system.
+  kind: methodology-platform
+  lifecycle_status: foundation
+  release_status: pre-alpha
+  canonical_language: en
+  translations:
+    - ru
+  primary_implementation_language: rust
+
+foundation:
+  baseline_revision: 1
+  canonical_root: docs/00-foundation
+  status: draft
+  maturity: hypothesis
+  frozen_for_implementation: true
+  change_process: docs/00-foundation/GOVERNANCE.md
+
+artifacts:
+  id_namespace: axp
+  roots:
+    - docs
+    - schemas
+    - templates
+    - examples
+    - rfcs
+    - crates
+    - proofs
+  metadata_schema: schemas/artifact.schema.json
+  metamodel: docs/01-metamodel/METAMODEL.md
+  allow_duplicate_ids: false
+  allow_dangling_relations: false
+  require_human_outcome: true
+  require_machine_outcome: true
+  require_verification_plan: true
+
+relations:
+  registry: docs/01-metamodel/METAMODEL.md
+  unknown_relation_policy: error
+  cycle_policy: typed
+
+methodology:
+  lifecycle: docs/02-methodology/LIFECYCLE.md
+  default_stages:
+    - working-backwards
+    - domain-driven-design
+    - specification-driven-development
+    - contract-driven-development
+    - type-driven-development
+    - test-driven-development
+    - proof-driven-development
+    - reflection-and-evolution
+  stage_skipping_policy: justified-and-recorded
+  rigor_policy: proportional-to-risk
+
+verification:
+  trust_model: docs/03-verification/TRUST_MODEL.md
+  deterministic:
+    implementation: rust
+    status: planned
+    scope:
+      - schema-validation
+      - identifier-integrity
+      - relation-integrity
+      - lifecycle-rules
+      - traceability
+      - graph-analysis
+  semantic:
+    implementation: vendor-neutral-llm-adapters
+    status: planned
+    scope:
+      - ambiguity
+      - omissions
+      - contradictions
+      - unsupported-reasoning
+      - terminology-drift
+      - cross-artifact-coherence
+  formal:
+    implementation: lean
+    status: selective-and-planned
+    scope:
+      - explicitly-selected-properties
+  human:
+    required: true
+    scope:
+      - intent
+      - domain-truth
+      - ethics
+      - trade-offs
+      - accountability
+
+human_experience:
+  preserve_cognitive_synchronization: true
+  require_visible_result_per_stage: true
+  require_context_compass: true
+  require_uncertainty_disclosure: true
+  beginner_mode: planned
+  expert_mode: planned
+
+reference_projects:
+  first:
+    id: axp.reference.roadcore-drainage-validator
+    name: RoadCore Drainage Validator
+    domain: industrial-road-longitudinal-profile-and-drainage
+    status: planned
+
+roadmap: docs/06-roadmap/ROADMAP.md
+agent_guide: AGENTS.md
