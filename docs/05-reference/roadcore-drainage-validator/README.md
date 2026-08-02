@@ -10,7 +10,7 @@ axiopra:
   owners: [MVOlekhno]
   summary: Reference project for validating road longitudinal-profile drainage.
   relations:
-    depends_on: [AXP-MTH-STAGES, AXP-VER-MODEL]
+    depends_on: [AXP-REF-GUIDE, AXP-MTH-STAGES, AXP-VER-MODEL]
     verifies: [AXP-MTH-STAGES]
     produces: [RCD-INTENT-001, RCD-FAQ-001]
   verification:

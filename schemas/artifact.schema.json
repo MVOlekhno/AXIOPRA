@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://axiopra.dev/schemas/artifact.schema.json",
+  "$id": "urn:axiopra:schema:artifact:0.1.0",
   "title": "AXIOPRA Markdown Artifact Front Matter",
   "description": "Schema for the YAML front matter extracted from one canonical AXIOPRA Markdown artifact.",
   "type": "object",

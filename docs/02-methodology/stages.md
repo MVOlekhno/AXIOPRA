@@ -10,7 +10,7 @@ axiopra:
   owners: [MVOlekhno]
   summary: The default end-to-end lifecycle and quality gates for AXIOPRA projects.
   relations:
-    depends_on: [AXP-FND-CONSTITUTION, AXP-MM-ARTIFACT, AXP-MM-RELATION]
+    depends_on: [AXP-FND-CONSTITUTION, AXP-MM-ARTIFACT, AXP-MM-RELATION, AXP-MTH-README]
     produces: [AXP-REF-ROADCORE, AXP-VER-MODEL]
   verification:
     structural: [AXP-RULE-001, AXP-RULE-002, AXP-RULE-006]
