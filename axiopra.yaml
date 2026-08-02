@@ -1,0 +1,139 @@
+schema_version: "0.1.0"
+
+project:
+  id: AXP
+  name: AXIOPRA
+  title: AXIOPRA Engineering Thought Operating System
+  version: "0.1.0"
+  status: pre-alpha
+  repository: MVOlekhno/AXIOPRA
+  canonical_language: en
+  supported_languages:
+    - en
+    - ru
+  primary_implementation_language: rust
+  mission: >-
+    Transform human intent into traceable, verifiable, evolvable engineering
+    knowledge and then into reliable systems without losing human understanding.
+
+entrypoints:
+  human_en: README.md
+  human_ru: README.ru.md
+  agents: AGENTS.md
+  llm_alias: LLM_GUIDE.md
+  foundation: docs/00-foundation/README.md
+  metamodel: docs/01-metamodel/README.md
+  methodology: docs/02-methodology/stages.md
+  verification: docs/03-verification/README.md
+  roadmap: docs/06-roadmap/README.md
+
+artifact_model:
+  source: markdown_yaml_front_matter
+  root_key: axiopra
+  schema: schemas/artifact.schema.json
+  template: templates/artifact.md
+  id_pattern: '^AXP-[A-Z0-9]+(?:-[A-Z0-9]+)*$'
+  graph_source_of_truth: artifact_metadata
+  generated_outputs:
+    - build/knowledge-graph.json
+    - build/knowledge-graph.mmd
+    - build/traceability-report.json
+
+artifact_roots:
+  - docs
+  - rfcs
+  - templates
+  - crates
+  - proofs
+  - examples
+
+lifecycle_states:
+  - hypothesis
+  - draft
+  - review
+  - active
+  - deprecated
+  - retired
+
+confidence_levels:
+  - unverified
+  - provisional
+  - validated
+  - canonical
+
+relation_types:
+  - depends_on
+  - derives_from
+  - refines
+  - constrains
+  - realizes
+  - verifies
+  - tests
+  - proves
+  - informs
+  - produces
+  - supersedes
+  - conflicts_with
+
+stages:
+  - id: AXP-STAGE-00
+    name: intent-and-working-backwards
+    order: 0
+  - id: AXP-STAGE-01
+    name: domain-discovery
+    order: 1
+  - id: AXP-STAGE-02
+    name: specification
+    order: 2
+  - id: AXP-STAGE-03
+    name: contracts
+    order: 3
+  - id: AXP-STAGE-04
+    name: type-driven-design
+    order: 4
+  - id: AXP-STAGE-05
+    name: architecture-and-composition
+    order: 5
+  - id: AXP-STAGE-06
+    name: rust-implementation
+    order: 6
+  - id: AXP-STAGE-07
+    name: tests-and-properties
+    order: 7
+  - id: AXP-STAGE-08
+    name: semantic-audit
+    order: 8
+  - id: AXP-STAGE-09
+    name: selective-formal-proof
+    order: 9
+  - id: AXP-STAGE-10
+    name: release-observation-and-evolution
+    order: 10
+
+verification:
+  structural:
+    engine: rust
+    future_command: axiopra check
+    deterministic: true
+  semantic:
+    engine: llm-adapter
+    deterministic: false
+    requires_human_review: true
+  formal:
+    engine: lean
+    selective: true
+  human:
+    required_for:
+      - intent
+      - domain_truth
+      - ethics
+      - trade_offs
+      - release_accountability
+
+policies:
+  canonical_change_requires_rfc: true
+  code_requires_upstream_traceability: true
+  visible_result_per_stage: true
+  learning_result_per_stage: true
+  vendor_neutral_context: true
+  generated_graph_is_not_source_of_truth: true
