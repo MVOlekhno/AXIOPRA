@@ -32,7 +32,7 @@ artifact_model:
   root_key: axiopra
   schema: schemas/artifact.schema.json
   template: templates/artifact.md
-  id_pattern: '^AXP-[A-Z0-9]+(?:-[A-Z0-9]+)*$'
+  id_pattern: '^[A-Z][A-Z0-9]{1,15}(?:-[A-Z0-9]+)+$'
   graph_source_of_truth: artifact_metadata
   generated_outputs:
     - build/knowledge-graph.json
