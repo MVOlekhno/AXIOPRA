@@ -11,7 +11,7 @@ axiopra:
   summary: Entry guide to the AXIOPRA Foundation and its quality gate.
   relations:
     depends_on: []
-    produces: [AXP-FND-MANIFESTO, AXP-FND-CONSTITUTION]
+    produces: [AXP-FND-MANIFESTO, AXP-FND-CONSTITUTION, AXP-FND-LANGUAGE]
   verification:
     structural: [AXP-RULE-001, AXP-RULE-002]
     semantic: [AXP-SEM-001, AXP-SEM-008]
@@ -21,6 +21,8 @@ axiopra:
 ---
 
 # Foundation
+
+[Русская версия](README.ru.md)
 
 ## Why this stage exists
 
@@ -35,6 +37,7 @@ The Foundation fixes the minimum stable laws from which the metamodel, methodolo
 - mission, vision, and non-goals;
 - constitutional rules;
 - definitions of knowledge, artifact, traceability, evidence, and verification;
+- language authority, localization, and drift control;
 - governance of canonical change;
 - human-centered laws: visible progress, uncertainty reduction, and cognitive synchronization.
 
@@ -44,8 +47,9 @@ Implementation choices and speculative features do not belong in the canon unles
 
 1. [`manifesto.md`](manifesto.md) — why AXIOPRA exists.
 2. [`constitution.md`](constitution.md) — binding rules and amendment process.
-3. A machine entry point in [`../../axiopra.yaml`](../../axiopra.yaml).
-4. Explicit handoff to the artifact metamodel.
+3. [`language-policy.md`](language-policy.md) — one canonical language with synchronized Russian localization.
+4. A machine entry point in [`../../axiopra.yaml`](../../axiopra.yaml).
+5. Explicit handoff to the artifact metamodel.
 
 ## Questions the reader must ask
 
@@ -58,15 +62,16 @@ Implementation choices and speculative features do not belong in the canon unles
 7. What is checked deterministically, semantically, formally, and manually?
 8. Which rules are universal and which are adjustable by project risk?
 9. How can project experience improve the methodology without silently corrupting the canon?
-10. What evidence would prove that the Foundation is wrong or incomplete?
+10. How can Russian users receive a complete path without creating a second semantic canon?
+11. What evidence would prove that the Foundation is wrong or incomplete?
 
 ## Visible result
 
-A reader can draw the platform layers and explain the reason for every layer without discussing implementation details.
+A reader can draw the platform layers and explain the reason for every layer without discussing implementation details. A Russian-speaking reader can follow the same route through synchronized translations while retaining a clear link to the canonical source.
 
 ## Definition of done
 
-The stage passes when the manifesto and constitution are mutually consistent, every binding rule has a downstream realization path, unresolved hypotheses are labelled, and changes to the canon require an RFC.
+The stage passes when the manifesto, constitution, and language policy are mutually consistent, every binding rule has a downstream realization path, unresolved hypotheses are labelled, required translation drift is visible, and changes to the canon require an RFC.
 
 ## Handoff
 
