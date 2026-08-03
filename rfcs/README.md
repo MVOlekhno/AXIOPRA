@@ -12,6 +12,7 @@ axiopra:
   relations:
     depends_on: [AXP-FND-CONSTITUTION]
     realizes: [AXP-FND-CONSTITUTION]
+    produces: [AXP-RFC-0001]
   verification:
     structural: [AXP-RULE-001, AXP-RULE-002, AXP-RULE-003]
     semantic: [AXP-SEM-003, AXP-SEM-005, AXP-SEM-008]
@@ -22,7 +23,9 @@ axiopra:
 
 # AXIOPRA RFC Process
 
-An RFC is required for changes to the Constitution, artifact schema, relation semantics, lifecycle stages, compatibility guarantees, verifier rule meaning, Engineering IR, plugin protocol, or other canonical behaviour.
+[Русская версия](README.ru.md)
+
+An RFC is required for changes to the Constitution, artifact schema, relation semantics, lifecycle stages, compatibility guarantees, verifier rule meaning, Engineering IR, plugin protocol, language and localization policy, or other canonical behaviour.
 
 ## Lifecycle
 
@@ -40,4 +43,8 @@ Use [`../templates/rfc.md`](../templates/rfc.md). Every RFC states the problem, 
 
 ## Rule
 
-Discussion alone never changes the canon. The accepted RFC, canonical artifact updates, schema or verifier changes, migration instructions, and tests must remain traceably connected.
+Discussion alone never changes the canon. The accepted RFC, canonical artifact updates, schema or verifier changes, migration instructions, translations, and tests must remain traceably connected.
+
+## Adopted RFCs
+
+- [`0001-russian-localization.md`](0001-russian-localization.md) — one English canon with mandatory synchronized Russian localization.

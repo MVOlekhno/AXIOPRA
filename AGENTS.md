@@ -16,12 +16,13 @@ Before changing the repository, read:
 2. `README.md` or `README.ru.md` — human orientation.
 3. `docs/00-foundation/manifesto.md`.
 4. `docs/00-foundation/constitution.md`.
-5. `docs/01-metamodel/artifact-model.md`.
-6. `docs/01-metamodel/relation-model.md`.
-7. `docs/02-methodology/stages.md`.
-8. The current artifact and every artifact it depends on.
+5. `docs/00-foundation/language-policy.md`.
+6. `docs/01-metamodel/artifact-model.md`.
+7. `docs/01-metamodel/relation-model.md`.
+8. `docs/02-methodology/stages.md`.
+9. The current artifact and every artifact it depends on.
 
-Do not infer that a missing file exists merely because another document links to it.
+Russian translations may be used for orientation and explanation, but an agent changing semantics must read the English canonical source. Do not infer that a missing file exists merely because another document links to it.
 
 ## Session compass
 
@@ -50,6 +51,7 @@ Never hide long-running work behind vague progress language. The human must be a
 8. **Rigor is proportional to risk.** Do not force formal proof on low-risk work, and do not rely only on examples for safety-critical claims.
 9. **Vendor neutrality.** Do not embed essential project knowledge solely in a proprietary prompt, chat, or service.
 10. **Controlled recursion.** Experience may improve the methodology only through an RFC, reference-project evidence, review, and explicit canon change.
+11. **One canon, synchronized languages.** Do not create independent normative meaning in a translation.
 
 ## Required artifact behavior
 
@@ -67,6 +69,23 @@ Every new canonical Markdown artifact must:
 
 Use `templates/artifact.md` as the default starting point.
 
+## Russian localization protocol
+
+English is the canonical platform language. Russian is a required first-class localization for user-facing platform documentation.
+
+When creating or changing a user-facing canonical artifact:
+
+1. edit and validate the English source first;
+2. create or update the sibling `<stem>.ru.md` file in the same change;
+3. validate translation metadata against `schemas/translation.schema.json`;
+4. preserve artifact IDs, rule IDs, commands, paths, code, schema keys, obligation strength, assumptions, exceptions, and non-goals;
+5. mark the translation `review` when complete but not yet human-reviewed;
+6. mark it `synchronized` only after a named human reviewer and review date are recorded;
+7. if translation cannot be completed, mark it `stale` and create a blocking localization task;
+8. never silently modify the Russian text to introduce meaning absent from the canonical source.
+
+Use `templates/translation.md`. Translation files are not canonical graph nodes and are excluded from artifact discovery. If translation exposes ambiguity, correct the English source and all affected artifacts before continuing.
+
 ## Semantic audit protocol
 
 A semantic audit must check at least:
@@ -81,6 +100,7 @@ A semantic audit must check at least:
 8. Does the artifact reduce uncertainty rather than merely add text?
 9. Can the user explain what became clearer after this stage?
 10. Is the next handoff sufficiently constrained to prevent arbitrary implementation?
+11. Does every required Russian translation preserve the canonical meaning and current source version?
 
 Return findings as `PASS`, `WARN`, `FAIL`, or `UNKNOWN`. Never report a deterministic verifier pass unless the verifier actually ran.
 
@@ -90,11 +110,12 @@ For canonical changes:
 
 1. identify the affected artifact graph;
 2. update the smallest coherent set of artifacts;
-3. run or clearly mark structural validation;
-4. perform semantic audit;
-5. summarize impact and remaining uncertainty;
-6. submit through a branch and pull request;
-7. use an RFC for changes to schemas, relation semantics, lifecycle stages, or constitutional rules.
+3. update required translations or explicitly mark them stale;
+4. run or clearly mark structural validation;
+5. perform semantic audit;
+6. summarize impact and remaining uncertainty;
+7. submit through a branch and pull request;
+8. use an RFC for changes to schemas, relation semantics, lifecycle stages, constitutional rules, or localization semantics.
 
 ## Code protocol
 
@@ -107,7 +128,8 @@ When implementation begins:
 - express contracts through constructors, types, `Result`, invariants, and explicit validation;
 - isolate pure domain logic from I/O;
 - use example tests, property tests, integration tests, and selective proofs according to risk;
-- preserve links from code and tests to artifact IDs.
+- preserve links from code and tests to artifact IDs;
+- design user-facing diagnostics for localization instead of embedding unstructured English strings in domain logic.
 
 ## Stop conditions
 
@@ -119,4 +141,5 @@ Stop implementation and report before proceeding when:
 - an assumption is being treated as fact;
 - a critical requirement has no verification strategy;
 - the human has lost the project thread;
-- the requested change modifies the canon without an RFC.
+- the requested change modifies the canon without an RFC;
+- a required translation would present stale normative meaning as current.
