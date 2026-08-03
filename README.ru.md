@@ -33,14 +33,23 @@ AXIOPRA синхронизирует четыре слоя:
 
 **Существительные становятся узлами. Глаголы — типизированными связями. Качества — метаданными. Ограничения — исполняемыми правилами.**
 
+## Языковая модель
+
+Английские артефакты являются единым каноническим источником. Русские файлы — обязательные синхронизированные переводы, связанные с точным исходным артефактом и его версией. При обнаружении неоднозначности сначала исправляется канон, затем перевод. Подробности: [`docs/00-foundation/language-policy.ru.md`](docs/00-foundation/language-policy.ru.md).
+
+До человеческого ревью новые переводы имеют статус `review` и не выдают себя за окончательно синхронизированные.
+
 ## С чего начать
 
-1. Прочитать [`docs/00-foundation/README.md`](docs/00-foundation/README.md).
-2. Посмотреть канон в [`manifesto.md`](docs/00-foundation/manifesto.md) и [`constitution.md`](docs/00-foundation/constitution.md).
-3. Понять модель артефакта в [`docs/01-metamodel/artifact-model.md`](docs/01-metamodel/artifact-model.md).
-4. Изучить последовательность этапов в [`docs/02-methodology/stages.md`](docs/02-methodology/stages.md).
-5. Для работы с ChatGPT, Claude Code, Codex и другими агентами использовать [`AGENTS.md`](AGENTS.md).
-6. Машинной точкой входа служит [`axiopra.yaml`](axiopra.yaml).
+1. Прочитать [`docs/00-foundation/README.ru.md`](docs/00-foundation/README.ru.md).
+2. Посмотреть манифест и Конституцию в [`manifesto.ru.md`](docs/00-foundation/manifesto.ru.md) и [`constitution.ru.md`](docs/00-foundation/constitution.ru.md).
+3. Понять модель артефакта и связей в [`artifact-model.ru.md`](docs/01-metamodel/artifact-model.ru.md) и [`relation-model.ru.md`](docs/01-metamodel/relation-model.ru.md).
+4. Изучить последовательность этапов в [`docs/02-methodology/stages.ru.md`](docs/02-methodology/stages.ru.md).
+5. Посмотреть модель доверия в [`docs/03-verification/README.ru.md`](docs/03-verification/README.ru.md).
+6. Изучить правила доказательности в [`docs/04-research/README.ru.md`](docs/04-research/README.ru.md).
+7. Открыть дорожную карту в [`docs/06-roadmap/README.ru.md`](docs/06-roadmap/README.ru.md).
+8. Для работы ChatGPT, Claude Code, Codex и других агентов использовать канонический [`AGENTS.md`](AGENTS.md).
+9. Машинной точкой входа служит [`axiopra.yaml`](axiopra.yaml).
 
 ## Инженерный цикл по умолчанию
 
