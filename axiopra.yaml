@@ -22,10 +22,19 @@ entrypoints:
   agents: AGENTS.md
   llm_alias: LLM_GUIDE.md
   foundation: docs/00-foundation/README.md
+  foundation_ru: docs/00-foundation/README.ru.md
+  language_policy: docs/00-foundation/language-policy.md
+  language_policy_ru: docs/00-foundation/language-policy.ru.md
   metamodel: docs/01-metamodel/README.md
+  metamodel_ru: docs/01-metamodel/README.ru.md
   methodology: docs/02-methodology/stages.md
+  methodology_ru: docs/02-methodology/stages.ru.md
   verification: docs/03-verification/README.md
+  verification_ru: docs/03-verification/README.ru.md
+  research: docs/04-research/README.md
+  research_ru: docs/04-research/README.ru.md
   roadmap: docs/06-roadmap/README.md
+  roadmap_ru: docs/06-roadmap/README.ru.md
 
 artifact_model:
   source: markdown_yaml_front_matter
@@ -44,6 +53,8 @@ artifact_discovery:
     - docs/**/*.md
     - rfcs/**/*.md
   exclude:
+    - docs/**/*.ru.md
+    - rfcs/**/*.ru.md
     - templates/**
     - build/**
   root_documents_are_guidance_not_artifacts:
@@ -51,6 +62,30 @@ artifact_discovery:
     - README.ru.md
     - AGENTS.md
     - LLM_GUIDE.md
+
+localization:
+  canonical_locale: en
+  required_locales:
+    - ru
+  strategy: sibling_file
+  filename_pattern: "{stem}.{locale}.md"
+  schema: schemas/translation.schema.json
+  template: templates/translation.md
+  translations_are_canonical_artifacts: false
+  current_rollout: progressive
+  public_release_requires_synchronized_translations: true
+  statuses:
+    - draft
+    - review
+    - synchronized
+    - stale
+  planned_checks:
+    - translation_pair_exists
+    - translation_metadata_valid
+    - source_path_resolves
+    - source_artifact_matches
+    - source_version_matches
+    - release_coverage_complete
 
 artifact_roots:
   - docs
@@ -142,6 +177,7 @@ verification:
       - ethics
       - trade_offs
       - release_accountability
+      - translation_synchronization
 
 policies:
   canonical_change_requires_rfc: true
@@ -150,3 +186,6 @@ policies:
   learning_result_per_stage: true
   vendor_neutral_context: true
   generated_graph_is_not_source_of_truth: true
+  one_canonical_language: true
+  russian_localization_required_for_user_facing_artifacts: true
+  canonical_and_translation_change_together_or_mark_stale: true
