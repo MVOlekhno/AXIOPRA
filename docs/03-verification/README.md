@@ -12,7 +12,7 @@ axiopra:
   relations:
     depends_on: [AXP-FND-CONSTITUTION, AXP-MM-ARTIFACT, AXP-MM-RELATION, AXP-MTH-STAGES]
     verifies: [AXP-FND-CONSTITUTION]
-    produces: [AXP-VER-RULESET]
+    produces: [AXP-VER-RULESET, AXP-VER-TRUST, AXP-VER-RUST, AXP-VER-LLM]
   verification:
     structural: [AXP-RULE-001, AXP-RULE-002, AXP-RULE-003]
     semantic: [AXP-SEM-002, AXP-SEM-003, AXP-SEM-006]
@@ -24,6 +24,16 @@ axiopra:
 # Verification Model
 
 AXIOPRA does not collapse trust into one misleading score. It reports a **verification profile** whose dimensions remain separate.
+
+## Detailed contracts
+
+- [`trust-boundaries.md`](trust-boundaries.md) — exact assurance scope, evidence records, contradiction classes, and correlated-failure rules.
+- [`rust-verifier.md`](rust-verifier.md) — deterministic compiler/verifier MVP and diagnostics contract.
+- [`llm-auditor.md`](llm-auditor.md) — vendor-neutral semantic audit package, finding format, permissions, and evaluation plan.
+- [`rules.md`](rules.md) — initial deterministic and semantic rule registry.
+- [`../../proofs/README.md`](../../proofs/README.md) — selective Lean proof boundary.
+
+These artifacts refine this overview. They do not create additional trust dimensions or merge independent evidence into one score.
 
 ## Layer 1 — Deterministic structural verifier
 
